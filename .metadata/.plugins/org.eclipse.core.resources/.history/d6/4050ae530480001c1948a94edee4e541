@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%!
+		public int total = 0;
+	%>
+	<p>페이지 누적 요청 수 : <b> </b></p>
+	<%
+		out.println("페이지 누적 요청 수 :" + ++total);	
+	%> 
+</body>
+</html>
