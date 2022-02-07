@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>학생 요금제입니다.</h2>
+<hr/>
 </body>
 </html>
