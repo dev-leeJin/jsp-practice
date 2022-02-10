@@ -17,17 +17,25 @@ public class JDBCSelectQ1 {
 		// 전달 쿼리문을 신경써서 작성해주세요.
 		// 힌트 : uid = "'" + 변수명 + "'"
 		try {
+			Scanner scan = new Scanner(System.in);
+			System.out.println("조회할 유저의 아이디를 입력해주세요.");
+			String uid = scan.nextLine();
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcprac1", //접속 url
 					"root", // mysql 아이디
 					"mysql");// mysql 비밀번호
 			
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM userinfo");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM userinfo WHERE uid = '" + uid + "'");
 			
-			System.out.println("조회할 유저의 아이디를 입력해주세요.");
-			Scanner scan = new Scanner(System.in);
-			String uid = scan.nextLine();
+		
+			if(rs.next()) {
+				System.out.println(rs.getString(1));
+				System.out.println(rs.getString(2));
+				System.out.println(rs.getString(3));
+				System.out.println(rs.getString(4));
+			}
 			
 			
 			
