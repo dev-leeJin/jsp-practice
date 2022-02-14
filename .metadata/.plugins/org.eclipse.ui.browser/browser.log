@@ -387,3 +387,20 @@
 2월 11, 2022 12:36:59.304 [7236:2656:0211/123659.300:ERROR:device_event_log_impl.cc(214)] [12:36:59.300] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
 2월 11, 2022 12:36:59.304 [7236:2656:0211/123659.302:ERROR:device_event_log_impl.cc(214)] [12:36:59.302] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
 2월 11, 2022 12:36:59.304 [7236:2656:0211/123659.303:ERROR:device_event_log_impl.cc(214)] [12:36:59.303] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+
+2월 14, 2022 09:29:30.418 NEW SESSION
+2월 14, 2022 09:29:30.418 [11316:6380:0214/092930.409:ERROR:chrome_browser_main_extra_parts_metrics.cc(227)] START: ReportBluetoothAvailability(). If you don't see the END: message, this is crbug.com/1216328.
+2월 14, 2022 09:29:30.426 [11316:6380:0214/092930.409:ERROR:chrome_browser_main_extra_parts_metrics.cc(230)] END: ReportBluetoothAvailability()
+2월 14, 2022 09:29:30.427 [11316:6380:0214/092930.409:ERROR:chrome_browser_main_extra_parts_metrics.cc(235)] START: GetDefaultBrowser(). If you don't see the END: message, this is crbug.com/1216328.
+2월 14, 2022 09:29:30.427 [11316:6380:0214/092930.411:ERROR:chrome_browser_main_extra_parts_metrics.cc(239)] END: GetDefaultBrowser()
+2월 14, 2022 09:29:30.427 [11316:11072:0214/092930.414:ERROR:device_event_log_impl.cc(214)] [09:29:30.413] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+2월 14, 2022 09:29:30.427 [11316:11072:0214/092930.417:ERROR:device_event_log_impl.cc(214)] [09:29:30.416] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+2월 14, 2022 09:29:30.464 [11316:11072:0214/092930.464:ERROR:device_event_log_impl.cc(214)] [09:29:30.463] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+2월 14, 2022 09:37:01.869 [3644:5036:0214/093701.868:ERROR:chrome_browser_main_extra_parts_metrics.cc(227)] START: ReportBluetoothAvailability(). If you don't see the END: message, this is crbug.com/1216328.
+2월 14, 2022 09:37:01.869 [3644:5036:0214/093701.868:ERROR:chrome_browser_main_extra_parts_metrics.cc(230)] END: ReportBluetoothAvailability()
+2월 14, 2022 09:37:01.870 [3644:5036:0214/093701.868:ERROR:chrome_browser_main_extra_parts_metrics.cc(235)] START: GetDefaultBrowser(). If you don't see the END: message, this is crbug.com/1216328.
+2월 14, 2022 09:37:01.871 [3644:5036:0214/093701.871:ERROR:chrome_browser_main_extra_parts_metrics.cc(239)] END: GetDefaultBrowser()
+2월 14, 2022 09:37:01.874 [3644:13092:0214/093701.874:ERROR:device_event_log_impl.cc(214)] [09:37:01.874] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+2월 14, 2022 09:37:01.876 [3644:13092:0214/093701.876:ERROR:device_event_log_impl.cc(214)] [09:37:01.876] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+2월 14, 2022 09:37:01.877 [3644:13092:0214/093701.877:ERROR:device_event_log_impl.cc(214)] [09:37:01.876] USB: usb_device_handle_win.cc:1049 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+2월 14, 2022 09:37:15.696 [3644:1728:0214/093715.696:ERROR:database.cc(1777)] Passwords SQLite error: code 2067 errno 0: UNIQUE constraint failed: logins.origin_url, logins.username_element, logins.username_value, logins.password_element, logins.signon_realm sql: INSERT INTO logins (origin_url, action_url, username_element, username_value, password_element, password_value, submit_element, signon_realm, date_created, blacklisted_by_user, scheme, password_type, times_used, form_data, display_name, icon_url, federation_url, skip_zero_click, generation_upload_status, possible_username_pairs, id, date_last_used, moving_blocked_for, date_password_modified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
