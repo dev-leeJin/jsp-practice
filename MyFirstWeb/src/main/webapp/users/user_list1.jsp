@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%
 	// VO 클래스(Value Object) / DTO 클래스(Data Transfer Object)
+	//# VO와 DTO의 약간의 차이는 존재하지만 지금 수준에서는 명칭차이이기 때문에 기능적으로 큰 차이가 있지는 않다. 
 
 	// 전체 유저 목록을 가져오는 코드를 작성해보도록 하겠습니다.
 	
