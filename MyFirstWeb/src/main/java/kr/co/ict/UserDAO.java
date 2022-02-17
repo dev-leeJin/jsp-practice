@@ -83,7 +83,49 @@ public class UserDAO {
 	public UserVO getUserData(String sId) {
 		// 접속로직은 getAllUserList()와 큰 차이가 없고 쿼리문만 좀 다릅니다. 
 		
-		return null;// DB에서 UserVO에 데이터를 받아주신 다음 null대신 받아온 데이터를 리턴하세요.
+		// 1. Connection, PreparedStatement, ResultSet 변수 선언만 해주세요.
+		// UserVO 변수 선언
+		// try블럭 외부에서ㅗ 써야하는(Connection, PreparedStatement, ResultSet은 finally블럭에서도 사용)
+		// (UserVO는 return구문에서 사용)것들은 try진입 전에 먼저 선언합니다.
+		ResultSet rs = null;  
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		UserVO user=null;
+		
+		
+		// 2. try블럭 내부에서 DB연결을 해주세요. 필요한 URL, ID, PW는 상단에 멤버변수로 이미 존재합니다.
+		try {
+		con = DriverManager.getConnection(dbUrl, dbId, dbPw);
+		
+		// 3. 쿼리문을 날려서 rs에 DB에서 가져온 정보를 받아주세요.
+		String sql = "SELECT * FROM userinfo WHERE uid = ?";
+		pstmt = con.prepareStatement(sql); //쿼리문 세팅
+		pstmt.setString(1, sId); // ?부분 채우기
+		
+		rs = pstmt.executeQuery(); // DB에 쿼리문 날리고 자료 받아오기.
+		// 4. UserVO 변수를 선언해주시고, rs에 저장된 데이터를 UserVO에 담습니다.
+		if(rs.next()) {
+			String uName = rs.getString("uname");
+			String uId = rs.getString("uid");
+			String uPw = rs.getString("upw");
+			String uEmail = rs.getString("uemail");
+			user = new UserVO(uName, uId, uPw, uEmail);
+		}
+		
+		// 5. catch, finally 블럭을 작성해주시고 finally에서 자원회수까지 마쳐주세요.
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			try { // .close()는 무조건 try블럭에 있어야 하기 때문에 finally 내부에도 추가로 try블럭 설정
+				con.close();
+				pstmt.close();
+				rs.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return user;// DB에서 UserVO에 데이터를 받아주신 다음 null대신 받아온 데이터를 리턴하세요.
 	}
 }
 
