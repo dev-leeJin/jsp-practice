@@ -81,6 +81,7 @@ public class UserDAO {
 	// 따라서, 그 한 명의 유저 데이터만을 이용해 SELECT구문을 써야합니다.
 	// login_update.jsp 상단의 sId 변수에 들어있는 유저명을 이용해 유저데이터를 얻어옵니다.
 	public UserVO getUserData(String sId) {
+
 		// 접속로직은 getAllUserList()와 큰 차이가 없고 쿼리문만 좀 다릅니다. 
 		
 		// 1. Connection, PreparedStatement, ResultSet 변수 선언만 해주세요.
@@ -127,6 +128,9 @@ public class UserDAO {
 		
 		return user;// DB에서 UserVO에 데이터를 받아주신 다음 null대신 받아온 데이터를 리턴하세요.
 	}
+	
+	
+	
 }
 
 
