@@ -53,7 +53,8 @@
 		}
 		*/
 		
-	UserDAO dao = new UserDAO();
+	//UserDAO dao = new UserDAO();
+		UserDAO dao = UserDAO.getInstance();
 	// update로직 호출
 	dao.updateCheck(sId, pw, name, email); // return void (void자료형이기 때문에 좌변에 변수를 대입할 수 없다.)
 	// 우변의 변수는 위에서 가져와야 한다. 
