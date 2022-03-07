@@ -1,3 +1,4 @@
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -17,6 +18,7 @@
 	
 	//# DB연동 코드를 여기에 작성하면 됌.
 	
+	/*
 	
 		String dbType = "com.mysql.cj.jdbc.Driver";
 		String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
@@ -53,6 +55,11 @@
 	}
 	
 	//# 로그인과 중복아이디 체크 기능이 필요함.
+	*/
+	
+	//UserDAO dao = new UserDAO();
+	UserDAO dao = UserDAO.getInstance(); // 싱글턴으로 생성된 힙 영역에 있는 UserDAO를 잠깐 빌려씀. (주소지로만)
+	dao.insertUser(fId, fPw, fName, fEmail);
 	
 %>
 <!DOCTYPE html>

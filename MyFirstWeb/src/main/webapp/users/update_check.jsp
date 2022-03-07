@@ -1,3 +1,5 @@
+<%@page import="kr.co.ict.UserVO"%>
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -7,6 +9,7 @@
 	// 0. 한글 깨지는 문제 해결
 	request.setCharacterEncoding("utf-8");
 	// 1. form에서 보낸 비번, 이름, 이메일을 변수로 저장해주세요.
+	//# http변수를 자바변수로 넘김. 
 	String pw = request.getParameter("fpw");
   	String name = request.getParameter("fname");
   	String email = request.getParameter("femail");
@@ -14,12 +17,15 @@
 	// 2. session에 저장된 아이디를 변수로 저장해주세요.
 	String sId= (String)session.getAttribute("session_id");
 	System.out.println(sId);
+	
+	/*
 	// 3. DB접속정보 변수로 관리
 		String dbType = "com.mysql.cj.jdbc.Driver";
 		String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
 		String dbId = "root";
 		String dbPw = "mysql";
 		
+	
 		try{
 	// 4. 연결
 			Class.forName(dbType);
@@ -45,6 +51,13 @@
 	// 7. body 태그에 XXX 회원의 정보가 수정되었습니다. 라고 안내해주고
 	// 웰컴페이지로 돌아갈 수 있는 링크 넣어주기.
 		}
+		*/
+		
+	//UserDAO dao = new UserDAO();
+		UserDAO dao = UserDAO.getInstance();
+	// update로직 호출
+	dao.updateCheck(sId, pw, name, email); // return void (void자료형이기 때문에 좌변에 변수를 대입할 수 없다.)
+	// 우변의 변수는 위에서 가져와야 한다. 
 %>    
 
 <!DOCTYPE html>
