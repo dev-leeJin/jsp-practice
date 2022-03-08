@@ -48,6 +48,7 @@ public class BoardListServlet extends HttpServlet {
 			
 		//4. /board/boardlist.jsp로 포워딩하기
 		// 포워딩 후 el로 바인딩한 자료를 화면에 뿌려보세요.
+		//#포워딩용 주소와 리다이렉트용 주소가 다름(포워딩은 앞에부분 생략)
 			RequestDispatcher dp= request.getRequestDispatcher("/board/boardlist.jsp");
 			dp.forward(request, response);
 		

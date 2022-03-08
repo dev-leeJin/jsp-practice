@@ -95,7 +95,7 @@ public class BoardDAO {
 	//#INSERT기능을 사용하기 위해서는 3개의 정보가 필요
 	public void insertBoard(String title, String content, String writer) {
 		// DB 연결구문을 작성
-		//셀릭트 구문이 아니기 때문에 resultset은 필요없다.
+		//셀렉트 구문이 아니기 때문에 resultset은 필요없다.
 		//ResultSet rs = null;  
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -123,6 +123,46 @@ public class BoardDAO {
 			}catch(SQLException se) {
 				se.printStackTrace();
 			}
-		
+		}
 	}
-	}}
+	
+	// 글 한개가 필요한 상황이므로 BoardVO 하나만 처리 가능
+	// SELECT * FROM boardTbl WHERE board_num = ?
+	public BoardVO getBoardDetail(int board_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardVO board = null;
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT * FROM boardTbl WHERE board_num = ?" ;
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			
+			rs = pstmt.executeQuery();
+			// 프라이머리키를 가진 보드넘은 있거나 없거나 둘 중 하나이기 때문에 if문을 사용해도 무방하다
+			if(rs.next()) {
+				int boardNum = rs.getInt("board_num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				Date bDate = rs.getDate("bdate");
+				Date mDate = rs.getDate("mdate");
+				int hit = rs.getInt("hit");
+				
+				board = new BoardVO(boardNum, title, content, writer, bDate, mDate, hit);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return board;
+	  }
+	}
