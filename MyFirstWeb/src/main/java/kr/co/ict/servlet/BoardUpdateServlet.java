@@ -30,7 +30,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		// 1. BoardDAO에 updateBoard() 메서드를 생성
 		
 		// 2. 1의 메서드에 들어갈 쿼리문은 아래와 같다.
-		// UPDATE FROM boardTbl SET title=?, content=? WHERE board num=?
+		// UPDATE FROM boardTbl SET title=?, content=?, mdate=now() WHERE board num=?
 		// 해당 쿼리문을 이용해서 1의 updateBoard() 메서드가 받아야 하는 파라미터를 설정
 		
 		// 3. 현재 doPost내부에서는 먼저 boardUpdate.jsp에서 form으로 전달된 데이터를 받아 변수로 저장
