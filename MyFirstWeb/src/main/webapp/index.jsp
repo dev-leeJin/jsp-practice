@@ -12,5 +12,9 @@
 	<h2>이 페이지가 메인페이지로 자동 설정됩니다.</h2>
 	<h2>여러분이 welcomepage 설정을 고쳐서 index.jsp가 아닌</h2>
 	<h2>다른 임의의 명칭을 메인페이지로 만들수도 있습니다. </h2>
+	<!--get방식 : select구문
+	post: select구문을 제외한 구문 -->
+	
+	<a href="http://localhost:8181/MyFirstWeb/boardList">게시판 입력</a>
 </body>
 </html>
