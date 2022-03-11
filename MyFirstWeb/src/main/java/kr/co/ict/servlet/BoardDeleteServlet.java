@@ -38,7 +38,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		// 2. 삭제로직 실행
 		dao.deleteBoard(bNum);
 		// 3. 식제후 boardList로 리다이렉트
-		response.sendRedirect("http://localhost:8181/MyFisteWeb/boardList");
+		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList");
 	}
 
 }

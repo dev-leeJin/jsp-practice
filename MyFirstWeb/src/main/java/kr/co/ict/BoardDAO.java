@@ -175,7 +175,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			String sql = "DELETE FORM boardTbl WHERE board_num=?" ;
+			String sql = "DELETE FROM boardTbl WHERE board_num=?" ;
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, boardNum);
@@ -191,5 +191,32 @@ public class BoardDAO {
 				se.printStackTrace();
 			}
 		}
+	}
+	
+		// Update도 select가 아니므로 void리턴 자료형을 가집니다.
+	public void boardUpdate(String title, String content, int bNum) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try {
+				con = ds.getConnection();
+				String sql = "UPDATE boardTbl SET title=?, content=?, mdate=now() WHERE board_num=?" ;
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1,title);
+				pstmt.setString(2, content);
+				pstmt.setInt(3, bNum);
+				
+				pstmt.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				try{
+					con.close();
+					pstmt.close();
+				}catch(SQLException se){
+					se.printStackTrace();
+				}
+			}
+		
 	}
 	}

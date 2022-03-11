@@ -46,5 +46,6 @@
 		</tbody>
 	</table>
 	<!-- # 서블릿에서 결과를 날려줘서 화면에 표출되기 때문에 결과페이지가 아닌 서블릿 페이지를 열어야 한다 -->	
+	<a href="http://localhost:8181/MyFirstWeb/boardInsertForm"><button>글쓰기</button></a>
 </body>
 </html>

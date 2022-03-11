@@ -14,7 +14,7 @@
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.BoardListServlet"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="kr.co.ict.BoardDAO"/>
     <fullyQualifiedTypeName name="kr.co.ict.BoardVO"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="kr.co.ict.BoardDAO"/>
 </qualifiedTypeNameHistroy>
