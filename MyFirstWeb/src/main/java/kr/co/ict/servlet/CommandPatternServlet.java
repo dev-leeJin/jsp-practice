@@ -31,6 +31,16 @@ public class CommandPatternServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		System.out.println(uri);
 		//uri 풀 주소가 잡히는 걸 볼 수 있는데 if else문을 이용해 한 페이지에 여러개의 페이지를 넣을 수 있다. 
+		if(uri.equals("/MyFirstWeb/main.test")) {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/");
+		}else if(uri.equals("/MyFirstWeb/board.test")) {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/boardlist");
+		}else if(uri.equals("/MyFirstWeb/login.test")) {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/users/login_form.jsp");
+		}else {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/");
+		}
+				
 	}
 
 	/**
