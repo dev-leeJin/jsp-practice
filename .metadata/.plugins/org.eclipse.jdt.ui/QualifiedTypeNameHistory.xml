@@ -24,4 +24,8 @@
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardListService"/>
     <fullyQualifiedTypeName name="javax.security.auth.message.callback.PrivateKeyCallback.Request"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDetailService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardInsertService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDeleteService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateFormService"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateService"/>
 </qualifiedTypeNameHistroy>
