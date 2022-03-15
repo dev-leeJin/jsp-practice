@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ict.servlet.service.BoardDeleteService;
 import kr.co.ict.servlet.service.BoardDetailService;
+import kr.co.ict.servlet.service.BoardInsertService;
 import kr.co.ict.servlet.service.BoardListService;
+import kr.co.ict.servlet.service.BoardUpdateFormService;
+import kr.co.ict.servlet.service.BoardUpdateService;
 import kr.co.ict.servlet.service.IBoardService;
 
 /**
@@ -54,17 +58,40 @@ public class FrontController extends HttpServlet {
 		String ui = null;
 		// 다형성을 이용해 요청주소에 따른 처리해줄 서비스
 		IBoardService sv = null;
+		System.out.println(uri);
 		
 		if(uri.equals("/MyFirstWeb/boardList.do")) {
 			sv = new BoardListService(); //다형성에 의해 IBoardService를 구현한 모든 타입을 sv에 저장 가능
 			sv.execute(request, response); // BoardListService의 execute는 게시글 목록을 가져옴
 			ui = "/board/boardlist.jsp";//포워딩 주소를 ui에 저장함
 		
-		}else if(uri.equals("/MyFirstWeb/boardDetail.do")) {
+		}else if(uri.equals("/MyFirstWeb/boarddetail.do")) {
 			sv = new BoardDetailService();
 			sv.execute(request, response);
 			ui= "/board/boarddetail.jsp";
 			
+		}else if(uri.equals("/MyFirstWeb/insertForm.do")) {
+			// BoardInsertFormServlet을 참조해서 완성해주세요.
+			ui =  "/board/boardform.jsp";
+		}else if(uri.equals("/MyFirstWeb/boardInsert.do")){
+			sv = new BoardInsertService();
+			sv.execute(request, response);
+			ui="/boardList.do";
+		}else if(uri.equals("/MyFirstWeb/boardDelete.do")) {
+			//위 패턴으로 BoardDeleteServlet의 기능을 BoardDeleteService로 이전하고 호출해주세요.
+			sv = new BoardDeleteService();
+			sv.execute(request, response);
+			ui = "/boardList.do";
+		}else if(uri.equals("/MyFirstWeb/boardUpdateForm.do")) {
+			// 1. 폼으로 보내기
+			sv = new BoardUpdateFormService();
+			sv.execute(request, response);
+			ui = "/board/boardUpdateForm.jsp";
+		}else if(uri.equals("/MyFirstWeb/boardUpdate.do")) {
+			// 2. 서비스 생성 -> 3. 실제 수정로직 실행 -> 4. .jsp파일도 마저 고쳐놓기
+			sv = new BoardUpdateService();
+			sv.execute(request, response);
+			ui = "/boardDetail.do?board_num=" + request.getParameter("board_num");
 		}
 		// 정해진 주소 이외의 주소로 접속했을때 메인페이지로 보내주는 포워딩
 		else {

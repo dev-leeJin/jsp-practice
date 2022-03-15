@@ -8,7 +8,7 @@
 </head>
 <body>
 	${board }
-	<form action="http://localhost:8181/MyFirstWeb/boardUpdate" method="post">
+	<form action="http://localhost:8181/MyFirstWeb/boardUpdate.do" method="post">
 		<!-- 폼은 디테일 페이지 양식을 가져오면 됩니다. -->
 		<!-- 고쳐야 되는 글제목과 본문에만 name을 걸어준다. -->
 		<input type="hidden" name = "board_num" value="${board.board_num }">
