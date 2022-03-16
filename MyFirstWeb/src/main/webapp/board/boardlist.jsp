@@ -45,7 +45,16 @@
 			</c:forEach>	
 		</tbody>
 	</table>
+	<!-- 세션여부에 따라 글쓰기 권한 부여 -->
+	<c:if test="${not empty sId }">
+		<a href = "http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
+	</c:if>
+	<!-- 두번째 방법 -->
+	<c:if test="${sessionScope.session_id ne null } }">
+		<a href = "http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
+	</c:if>
+
 	<!-- # 서블릿에서 결과를 날려줘서 화면에 표출되기 때문에 결과페이지가 아닌 서블릿 페이지를 열어야 한다 -->	
-	<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
+<!--  	<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>  -->
 </body>
 </html>
