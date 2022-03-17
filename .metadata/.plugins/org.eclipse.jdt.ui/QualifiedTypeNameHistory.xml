@@ -25,12 +25,12 @@
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDetailService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardInsertService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardDeleteService"/>
-    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateFormService"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateService"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.BoardInsertFormServlet"/>
     <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardInsertFormService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="kr.co.ict.servlet.service.BoardUpdateFormService"/>
 </qualifiedTypeNameHistroy>

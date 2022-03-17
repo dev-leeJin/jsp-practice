@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test = "${sId eq null }">
+	<% response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList.do"); %>
+	<!-- 연속된 포워딩으로 에러가 뜨는걸 막기 위해 InsertFromService에 포워딩 대신 적는 코드 -->
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
