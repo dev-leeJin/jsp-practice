@@ -44,7 +44,8 @@ public class BoardDAO {
 	// 1. boarTbl에 맞춰서 처리하기 위해 UserVO를 BoardVO로 변경
 	// 2. 쿼리문 변경
 	// 3. while문 내부에서 BoardVO 세팅이 가능하도록 rs에서 데이터 가져오는 부분을 수정
-	public List<BoardVO> getAllBoardList(){ 
+	// 페이징 처리를 위해 페이지 번호를 추가로 입력받습니다. 
+	public List<BoardVO> getAllBoardList(int pageNum){ 
 		ResultSet rs = null;  
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -53,11 +54,14 @@ public class BoardDAO {
 		
 		try {
 			con = ds.getConnection();
+			int limitNum = ((pageNum-1)*20);
 			//String sql = "SELECT * FROM boardTbl" ;
 			//최근 게시물이 맨 위로 올라오는 쿼리문
-			String sql = "SELECT * FROM boardTbl ORDER BY board_num DESC" ;
+			// LIMIT 뒤쪽 숫자가 페이지당 보여줄 글 개수이므로 DTO의 상수와 함께 고쳐야 함
+			String sql = "SELECT * FROM boardtbl order by board_num DESC limit ?, 20"; 
 			pstmt = con.prepareStatement(sql);
-		
+			pstmt.setInt(1, limitNum);
+			
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
@@ -108,7 +112,7 @@ public class BoardDAO {
 			// 일부요소만 넣기 - INSERT INTO boardTbl(title, content, writer) VALUES (?, ?, ?)
 			String sql = "INSERT INTO boardTbl(title, content, writer) VALUES (?, ?, ?)" ;
 			pstmt = con.prepareStatement(sql);
-			// 실행 전 상단 쿼리문 ? 채워넣기
+			// 실행 전 상단 쿼리문 ? 채워넣기 
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setString(3, writer);
@@ -129,11 +133,13 @@ public class BoardDAO {
 	
 	// 글 한개가 필요한 상황이므로 BoardVO 하나만 처리 가능
 	// SELECT * FROM boardTbl WHERE board_num = ?
-	public BoardVO getBoardDetail(int board_num) {
+	public BoardVO getBoardDetail(int board_num) { //upHit 포함
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		BoardVO board = null;
+		//upHit(board_num);// 조회수 올리는 로직을 실행한 다음 글정보 불러오게 처리
+		// 여기서도 호출해서 2씩 증가합니다.
 		try {
 			con = ds.getConnection();
 			String sql = "SELECT * FROM boardTbl WHERE board_num = ?" ;
@@ -152,7 +158,7 @@ public class BoardDAO {
 				int hit = rs.getInt("hit");
 				
 				board = new BoardVO(boardNum, title, content, writer, bDate, mDate, hit);
-				upHit(boardNum);
+				//upHit(boardNum);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -167,6 +173,7 @@ public class BoardDAO {
 		}
 		return board;
 	  }
+	
 	
 	// deleteBoard 메서드를 만들어서 삭제처리가 되게 만들어주시고 
 	// 서블릿에서 해당 메서드를 호출해 실제로 삭제버튼을 누르면 DB에서 해당 번호 글이 삭제되게 해주세요.
@@ -224,10 +231,64 @@ public class BoardDAO {
 	
 	//서비스가 아닌 getBoardDetail 실행시 자동으로 같이 실행되도록 처리하겠습니다. 
 	// 글 제목을 클릭할때마다 조회수를 상승시키는 메서드
-	private void upHit(int bId) {
+	public void upHit(int bId) {
 		
-		String sql = "UPDATE boardTbl SET hit - (hit +1) WHERE board_num=?";
+		// update문에 맞는 접속로직을 작성
+		String sql = "UPDATE boardTbl SET hit = (hit +1) WHERE board_num=?";
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		System.out.println("uphit 호출됨");
 		
-		System.out.println("현재 조회된 글 번호 : " + bId);
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bId);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	// 페이징 처리를 위해 글 전체 개수를 구해오겠습니다.
+	// 하단에 public int getPageNum() 을 작성
+	// 쿼리문은 SELECT COUNT(*) FROM boardTbl; 
+	public int getPageNum() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int pageNum = 0;
+		
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT COUNT(*) FROM boardTbl" ;
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pageNum= rs.getInt(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		
+		return pageNum;
+		
 	}
 	}

@@ -23,6 +23,8 @@ public class BoardDetailService implements IBoardService{
 		
 		// dao생성
 		BoardDAO dao = BoardDAO.getInstance();
+		// 조회수 올리기
+		dao.upHit(bNum);//uphit를 여기서도 호출하고
 		// dao에서 해당 글번호에 대한 정보를 가져오고
 		BoardVO board = dao.getBoardDetail(bNum);
 		

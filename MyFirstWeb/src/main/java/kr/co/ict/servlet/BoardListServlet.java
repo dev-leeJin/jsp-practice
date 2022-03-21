@@ -16,7 +16,7 @@ import kr.co.ict.BoardVO;
 /**
  * Servlet implementation class BoardListServlet
  */
-@WebServlet("/boardList")
+@WebServlet("/boardList")// 이건 프론트컨트롤러 도입 전 파일이라 신경 안쓰셔도 됩니다.
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,12 +39,12 @@ public class BoardListServlet extends HttpServlet {
 			// 파악할 수 있다. (디버깅)
 			
 		//2. BoardDAO의 getAllBoardList() 호출해 전체 게시글 정보 받아오기
-			List<BoardVO> boardList= dao.getAllBoardList();
-			System.out.println(boardList);
+			//List<BoardVO> boardList= dao.getAllBoardList();
+			//System.out.println(boardList);
 			
 		//3. request.setAttribute로 바인딩하기
 		//List<BoardVO> boardList를 바로 바운딩할수도 있습니다.	
-			request.setAttribute("boardList", boardList);
+			//request.setAttribute("boardList", boardList);
 			
 		//4. /board/boardlist.jsp로 포워딩하기
 		// 포워딩 후 el로 바인딩한 자료를 화면에 뿌려보세요.

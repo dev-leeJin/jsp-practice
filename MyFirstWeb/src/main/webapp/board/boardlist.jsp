@@ -45,6 +45,10 @@
 			</c:forEach>	
 		</tbody>
 	</table>
+	
+	${dto }
+	
+	
 	<!-- 세션여부에 따라 글쓰기 권한 부여 -->
 	<c:if test="${not empty sId }">
 		<a href = "http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
