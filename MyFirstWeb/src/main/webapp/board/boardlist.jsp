@@ -45,10 +45,7 @@
 			</c:forEach>	
 		</tbody>
 	</table>
-	
-	${dto }
-	
-	
+		
 	<!-- 세션여부에 따라 글쓰기 권한 부여 -->
 	<c:if test="${not empty sId }">
 		<a href = "http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
@@ -57,7 +54,43 @@
 	<c:if test="${sessionScope.session_id ne null } }">
 		<a href = "http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
 	</c:if>
-
+	
+	
+	${dto }
+	<!-- document의 pagination 파트를 보고 1부터 10까지 나열해보세요. -->
+	<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center"> 
+  	<li class="page-item ${dto.startPage eq 1 ? 'disabled' : '' }">
+  		<a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${dto.startPage -1 }">&laquo;</a>
+  	</li>
+    <c:forEach var="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
+   		 <li class="page-item ${dto.currentPage eq pageIndex ? 'active' : '' }"><a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${pageIndex }">${pageIndex }</a></li>
+    </c:forEach>
+    <li class="page-item ${dto.endPage eq dto.totalPages ? 'disabled' : '' }">
+    	<a class="page-link" href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${dto.endPage + 1} " >&raquo; </a>
+    </li>
+  </ul>
+</nav>
+	<hr/>
+	<h3>부트스트랩 없이 만들기</h3>
+	
+	<c:if test="${dto.startPage ne 1 }">
+		<a href ="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${dto.startPage -1 }">Prev</a> 
+	</c:if>
+	
+	<c:forEach var ="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
+		<c:if test="${dto.currentPage eq pageIndex }">
+			<a href="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${pageIndex }">[${pageIndex }]</a>
+		</c:if>	
+		<c:if test ="${dto.currentPage ne pageIndex }">
+			<a href = "http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${pageIndex }">[${ pageIndex}]</a>
+		</c:if>
+	</c:forEach>
+	
+	<c:if test="${dto.totalPages ne dto.endPage }">
+		<a href ="http://localhost:8181/MyFirstWeb/boardList.do?pageNum=${dto.endPage + 1 }">Next</a> 
+	</c:if>
+	
 	<!-- # 서블릿에서 결과를 날려줘서 화면에 표출되기 때문에 결과페이지가 아닌 서블릿 페이지를 열어야 한다 -->	
 <!--  	<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>  -->
 </body>

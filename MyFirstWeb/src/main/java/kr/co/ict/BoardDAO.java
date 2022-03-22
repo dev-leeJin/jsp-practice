@@ -49,18 +49,21 @@ public class BoardDAO {
 		ResultSet rs = null;  
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		// 페이징 처리시 페이지당 글 갯수
+		final int BOARD_COUNT = 10;
 		
 		List<BoardVO> boardList = new ArrayList<>();
 		
 		try {
 			con = ds.getConnection();
-			int limitNum = ((pageNum-1)*20);
+			int limitNum = ((pageNum-1) * BOARD_COUNT);
 			//String sql = "SELECT * FROM boardTbl" ;
 			//최근 게시물이 맨 위로 올라오는 쿼리문
 			// LIMIT 뒤쪽 숫자가 페이지당 보여줄 글 개수이므로 DTO의 상수와 함께 고쳐야 함
-			String sql = "SELECT * FROM boardtbl order by board_num DESC limit ?, 20"; 
+			String sql = "SELECT * FROM boardtbl order by board_num DESC limit ?, ?"; 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, limitNum);
+			pstmt.setInt(2, BOARD_COUNT);
 			
 			rs = pstmt.executeQuery();
 
